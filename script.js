@@ -7,7 +7,8 @@ function changeGreeting() {
         "Namaste!",
         "Bonjour!",
         "Hola!",
-        "Ciao!"
+        "Ciao!",
+        "Namaskaram!"
     ];
     const greetingElem = document.getElementById('greeting');
     let current = greetingElem.textContent;
