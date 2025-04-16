@@ -1,0 +1,31 @@
+# Node modules (if you ever add node tooling)
+node_modules/
+
+# Dependency directories
+venv/
+.env/
+
+# Logs
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Build output
+/dist/
+/build/
+
+# Docker
+*.pid
+
+# Nginx default files (if generated)
+nginx.conf
+
+# Misc
+*.swp
+*.swo
