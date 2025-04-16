@@ -1,21 +1,24 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
+        stage('Clone Repo') {
             steps {
-                checkout scm
+                git(url: 'https://github.com/samyuktha-rao/Helloworld.git', branch: 'main')
             }
         }
+ 
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("helloworld-app:${env.BUILD_NUMBER}")
+                    bat 'docker build -t my-image .'
                 }
             }
         }
-        stage('Run Docker Container') {
+ 
+        stage('Run Container') {
             steps {
                 script {
+                    // Stop and remove existing container if any - using separate commands with returnStatus
                     bat(script: 'docker stop my-running-container', returnStatus: true)
                     bat(script: 'docker rm my-running-container', returnStatus: true)
                    
@@ -28,13 +31,10 @@ pipeline {
                     } else {
                         echo 'Port 8090 is available'
                         bat 'docker run -d -p 8090:80 --name my-running-container my-image'
+                    }
                 }
             }
         }
     }
-    post {
-        always {
-            echo 'Pipeline finished.'
-        }
-    }
 }
+ 
